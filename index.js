@@ -2,7 +2,7 @@
 var twilio = require('twilio'),
     http = require('http');
  
-// Create an HTTP server, listening on port 1337
+// Create an HTTP server, listening on port 80
 http.createServer(function (req, res) {
     // Create a TwiML response and a greeting
     var songUrl = 'http://picosong.com/6Ned'
@@ -18,6 +18,6 @@ http.createServer(function (req, res) {
     });
     res.end(resp.toString());
  
-}).listen(1337);
+}).listen(80);
  
 console.log('Visit http://localhost:80/ in your browser to see your TwiML document!');
