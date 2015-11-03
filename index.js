@@ -20,4 +20,4 @@ http.createServer(function (req, res) {
  
 }).listen(1337);
  
-console.log('Visit http://localhost:1337/ in your browser to see your TwiML document!');
+console.log('Visit http://localhost:80/ in your browser to see your TwiML document!');
