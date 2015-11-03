@@ -1,6 +1,11 @@
 // Require the twilio and HTTP modules
-var twilio = require('twilio'),
-    http = require('http');
+var twilio = require('twilio');
+var http = require('http');
+var fileUrl = require('file-url');
+
+audio1Url('/root/airbnb-demo/audio/onewish.jpg');
+ 
+
  
 // Create an HTTP server, listening on port 80
 http.createServer(function (req, res) {
