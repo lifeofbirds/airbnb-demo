@@ -7,12 +7,9 @@ var audio1Url = require('file-url');
 // Create an HTTP server, listening on port 80
 http.createServer(function (req, res) {
     // Create a TwiML response and a greeting
-    var songUrl = audio1Url('/root/airbnb-demo/audio/onewish.jpg');
+    var songUrl = audio1Url('home/root/airbnb-demo/audio/onewish.jpg');
     var resp = new twilio.TwimlResponse();
-    resp.play(songUrl);
- 
-    // The <Gather> verb requires nested TwiML, so we pass in a function
-    // to generate the child nodes of the XML document
+    resp
  
     //Render the TwiML document using "toString"
     res.writeHead(200, {
