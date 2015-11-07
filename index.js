@@ -3,7 +3,7 @@ var twilio = require('twilio');
 var http = require('http');
 //var audio1Url = require('file-url');
 
-var requestNumber = 1;
+var requestNumber = 0;
  
 // Create an HTTP server, listening on port 80
 http.createServer(function (req, res) {
@@ -19,10 +19,10 @@ http.createServer(function (req, res) {
 
 	//
 
-	var index =  requestNumber % 2;
+	var index =  requestNumber % audioFiles.length;
     var songUrl = audioFiles[index];
     var resp = new twilio.TwimlResponse();
-    resp.play(songUrl, {loop: 300});
+    resp.play(songUrl, {loop: 3000});
  
  
     //Render the TwiML document using "toString"
