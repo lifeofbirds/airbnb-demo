@@ -7,9 +7,20 @@ var http = require('http');
 // Create an HTTP server, listening on port 80
 http.createServer(function (req, res) {
     // Create a TwiML response and a greeting
-    var songUrl = 'http://www.anestheticaudio.com/328133__maynardkenmuir__rum-bottle.wav';
+    var audioFiles = [
+    'http://www.anestheticaudio.com/sounds/rum-bottle.wav',
+    'http://www.anestheticaudio.com/sounds/lost-transmission-drone.wav'
+    ];
+
+    function randomInt (low, high) {
+    return Math.floor(Math.random() * (high - low + 1) + low);
+	}
+
+	var index = randomInt(0,(audioFilex.length-1));
+
+    var songUrl = audioFiles[index];
     var resp = new twilio.TwimlResponse();
-    resp.play(songUrl, {loop: 3});
+    resp.play(songUrl, {loop: 300});
  
  
     //Render the TwiML document using "toString"
