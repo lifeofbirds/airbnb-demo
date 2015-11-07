@@ -7,7 +7,7 @@ var http = require('http');
 // Create an HTTP server, listening on port 80
 http.createServer(function (req, res) {
     // Create a TwiML response and a greeting
-    var songUrl = 'http://www.anestheticaudio.com/onewish.mp3';
+    var songUrl = 'http://www.anestheticaudio.com/328133__maynardkenmuir__rum-bottle.wav';
     var resp = new twilio.TwimlResponse();
     resp.play(songUrl, {loop: 3});
  
