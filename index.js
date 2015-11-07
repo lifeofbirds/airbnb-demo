@@ -16,7 +16,7 @@ http.createServer(function (req, res) {
     return Math.floor(Math.random() * (high - low + 1) + low);
 	}
 
-	var index = randomInt(0,(audioFile.length-1));
+	var index = randomInt(0,(audioFiles.length-1));
 
     var songUrl = audioFiles[index];
     var resp = new twilio.TwimlResponse();
