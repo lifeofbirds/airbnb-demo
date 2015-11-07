@@ -31,7 +31,7 @@ http.createServer(function (req, res) {
     res.end(resp.toString());
 
     console.log ("Request number "+ requestNumber + "is listening to " + songUrl);
-    requestNumber = requestNumber+++;
+    requestNumber = requestNumber++;
  
 }).listen(80);
  
