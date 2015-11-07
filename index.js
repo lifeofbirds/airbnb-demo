@@ -9,13 +9,13 @@ var requestNumber = 0;
 http.createServer(function (req, res) {
     // Create a TwiML response and a greeting
     var audioFiles = [
-    'doorbell-1.wav',
-    'doorbell-2.wav',
-    'doorbell-3.wav',
-    'doorbell-4.wav',
-    'doorbell-5.wav',
-    'doorbell-6.wav',
-    'doorbell-7.wav'
+    'http://anestheticaudio.com/sounds/doorbell-1.wav',
+    'http://anestheticaudio.com/sounds/doorbell-2.wav',
+    'http://anestheticaudio.com/sounds/doorbell-3.wav',
+    'http://anestheticaudio.com/sounds/doorbell-4.wav',
+    'http://anestheticaudio.com/sounds/doorbell-5.wav',
+    'http://anestheticaudio.com/sounds/doorbell-6.wav',
+    'http://anestheticaudio.com/sounds/doorbell-7.wav'
     ];
 
  // old randomizer fn	
