@@ -9,10 +9,8 @@ http.createServer(function (req, res) {
     // Create a TwiML response and a greeting
     var songUrl = 'http://www.anestheticaudio.com/onewish.mp3';
     var resp = new twilio.TwimlResponse();
-    resp.play(songUrl);
+    resp.play(songUrl, {loop: 3});
  
-    // The <Gather> verb requires nested TwiML, so we pass in a function
-    // to generate the child nodes of the XML document
  
     //Render the TwiML document using "toString"
     res.writeHead(200, {
