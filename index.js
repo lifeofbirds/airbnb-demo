@@ -9,15 +9,20 @@ var requestNumber = 0;
 http.createServer(function (req, res) {
     // Create a TwiML response and a greeting
     var audioFiles = [
-    'http://www.anestheticaudio.com/sounds/rum-bottle.wav',
-    'http://www.anestheticaudio.com/sounds/lost-transmission-drone.wav'
+    'doorbell-1.wav',
+    'doorbell-2.wav',
+    'doorbell-3.wav',
+    'doorbell-4.wav',
+    'doorbell-5.wav',
+    'doorbell-6.wav',
+    'doorbell-7.wav'
     ];
 
- //    function randomInt (low, high) {
- //    return Math.floor(Math.random() * (high - low + 1) + low);
+ // old randomizer fn	
+ // 	function randomInt (low, high) {
+ // 		return Math.floor(Math.random() * (high - low + 1) + low);
 	// }
 
-	//
 
 	var index =  requestNumber % audioFiles.length;
     var songUrl = audioFiles[index];
