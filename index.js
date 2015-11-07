@@ -3,6 +3,7 @@ var twilio = require('twilio');
 var http = require('http');
 //var audio1Url = require('file-url');
 
+var requestNumber = 1;
  
 // Create an HTTP server, listening on port 80
 http.createServer(function (req, res) {
@@ -28,7 +29,10 @@ http.createServer(function (req, res) {
         'Content-Type':'text/xml'
     });
     res.end(resp.toString());
+
+    console.log ("Request number "+ requestNumber + "is listening to " + songUrl);
+    requestNumber = requestNumber+++;
  
 }).listen(80);
  
-console.log('Visit http://localhost:80/ in your browser to see your TwiML document!');
+console.log('server listening on port 80');
