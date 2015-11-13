@@ -9,3 +9,16 @@ div {
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
 }   
+
+#submit {
+    background-color: gray;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+    font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
+    font-size: 200px;
+    text-decoration: none;
+    cursor: pointer;
+    border:none;
+}
