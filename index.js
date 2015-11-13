@@ -24,7 +24,7 @@ http.createServer(function (req, res) {
     'http://anestheticaudio.com/sounds/4.mp3',
     'http://anestheticaudio.com/sounds/5.mp3',
     'http://anestheticaudio.com/sounds/6.mp3',
-    'http://anestheticaudio.com/sounds/7.mp3'
+    'http://anestheticaudio.com/sounds/7.mp3',
     'http://anestheticaudio.com/sounds/8.mp3',
     'http://anestheticaudio.com/sounds/9.mp3',
     'http://anestheticaudio.com/sounds/10.mp3',
