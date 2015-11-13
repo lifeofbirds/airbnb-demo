@@ -1,0 +1,6 @@
+html
+  head
+    title!= audioUrl
+  body(style={background: 'black'})
+    audio(preload = "auto", autobuffer, controls)
+      source(src!=audioUrl)
