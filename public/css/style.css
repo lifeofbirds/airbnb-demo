@@ -13,8 +13,9 @@ div {
 #submit {
     background-color: gray;
     -moz-border-radius: 0px;
+    -webkit-appearance: none;
     -webkit-border-radius: 0px;
-    border-radius:0px;
+    border-radius:0;
     color: #fff;
     font-family: Futura, 'Trebuchet MS', Arial, sans-serif;
     font-size: 100px;
