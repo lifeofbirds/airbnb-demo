@@ -8,6 +8,7 @@ var log_file = fs.createWriteStream(__dirname + '/debug.log', {flags : 'w'});
 var log_stdout = process.stdout;
 
 app.set('view engine', 'jade');
+app.use(express.static(__dirname + '/public'));
 
 
 console.log = function(d) { //

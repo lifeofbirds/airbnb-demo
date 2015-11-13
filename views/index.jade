@@ -1,6 +1,8 @@
 html
   head
+    link(href='/css/style.css', rel='stylesheet')
     title!= audioUrl
   body(style={background: 'black'})
+  #content
     audio(preload = "auto", autobuffer, controls)
       source(src!=audioUrl)
