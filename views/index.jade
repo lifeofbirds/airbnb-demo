@@ -4,5 +4,5 @@ html
     title!= audioUrl
   body(style={background: 'black'})
   #content
-    audio(preload = "auto", autobuffer, controls)
-      source(src!=audioUrl)
+    form(action!=audioUrl)
+      input(type="submit", value="click to listen")
