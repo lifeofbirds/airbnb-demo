@@ -3,6 +3,41 @@ var fs = require('fs');
 var util = require('util');
 var express = require('express');
 var app = express();
+var AWS = require('aws-sdk');
+
+var credentials = new AWS.SharedIniFileCredentials({profile: 'personal-account'});
+AWS.config.credentials = credentials;
+
+var s3 = new AWS.S3();
+
+var fullBucket = []
+var allKeys = [];
+var audioUrls = [];
+
+var S3Params = {Bucket: 'airsnd'};
+
+function fetchUrls (keys){
+  for (var i = 0; i < keys.length; i++){
+    var currentKey = keys[i];
+    var params = {Bucket: S3Params.Bucket, Key: currentKey};
+    s3.getSignedUrl('getObject', params, function (err, url) {
+    audioUrls.push(url);
+    });
+  }
+}
+
+s3.listObjects(S3Params, function(err, data) {  //this will full allkeys with the full list of keys from s3 bucket
+  if (err) {
+  console.log(err, err.stack); // an error occurred
+  }
+  else {
+    fullBucket = data.Contents; 
+    }
+  for (var i = 0; i < fullBucket.length; i++){
+    allKeys.push(fullBucket[i].Key);
+  }
+  fetchUrls(allKeys);
+});
 
 var log_file = fs.createWriteStream(__dirname + '/debug.log', {flags : 'w'});
 var log_stdout = process.stdout;
@@ -20,26 +55,8 @@ var requestNumber = 0;
 
 app.get('/', function (req, res) {
 
-  var audioFiles = [
-    'http://anestheticaudio.com/sounds/1.mp3',
-    'http://anestheticaudio.com/sounds/2.mp3',
-    'http://anestheticaudio.com/sounds/3.mp3',
-    'http://anestheticaudio.com/sounds/4.mp3',
-    'http://anestheticaudio.com/sounds/5.mp3',
-    'http://anestheticaudio.com/sounds/6.mp3',
-    'http://anestheticaudio.com/sounds/7.mp3',
-    'http://anestheticaudio.com/sounds/8.mp3',
-    'http://anestheticaudio.com/sounds/9.mp3',
-    'http://anestheticaudio.com/sounds/10.mp3',
-    'http://anestheticaudio.com/sounds/12.mp3',
-    'http://anestheticaudio.com/sounds/13.mp3',
-    'http://anestheticaudio.com/sounds/14.mp3',
-    'http://anestheticaudio.com/sounds/15.mp3',
-    'http://anestheticaudio.com/sounds/16.mp3',
-    ];
-
-  var index =  requestNumber % audioFiles.length;
-  var audioUrl = audioFiles[index];
+  var index =  requestNumber % audioUrls.length;
+  var audioUrl = audioUrls[index];
 
   console.log ("Request number "+ requestNumber + " is about to get " + audioUrl);
   requestNumber++;
