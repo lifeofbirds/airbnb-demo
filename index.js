@@ -1,3 +1,6 @@
+//node server that pulls URLs to audio files from a given aws s3 bucket and serves them consecutively per http request.
+//built for 200 channel/phone audio experience for airbnb
+
 var http = require('http');
 var fs = require('fs');
 var util = require('util');
@@ -14,8 +17,9 @@ var fullBucket = []
 var allKeys = [];
 var audioUrls = [];
 
-var S3Params = {Bucket: 'airsnd'};
+var S3Params = {Bucket: 'airsnd'}; //set s3 bucket name here
 
+//gets temporary signed URLs for each object in the s3 bucket given an array of s3 keys
 function fetchUrls (keys){
   for (var i = 0; i < keys.length; i++){
     var currentKey = keys[i];
@@ -26,9 +30,10 @@ function fetchUrls (keys){
   }
 }
 
-s3.listObjects(S3Params, function(err, data) {  //this will full allkeys with the full list of keys from s3 bucket
+//this will fill allKeys with the full/current list of keys from s3 bucket each time the server is restarted
+s3.listObjects(S3Params, function(err, data) {  
   if (err) {
-  console.log(err, err.stack); // an error occurred
+  console.log(err, err.stack); 
   }
   else {
     fullBucket = data.Contents; 
@@ -42,32 +47,35 @@ s3.listObjects(S3Params, function(err, data) {  //this will full allkeys with th
 var log_file = fs.createWriteStream(__dirname + '/debug.log', {flags : 'w'});
 var log_stdout = process.stdout;
 
-app.set('view engine', 'jade');
-app.use(express.static(__dirname + '/public'));
-
-
-console.log = function(d) { //
+//replaces console.log with a logfile + stdout
+console.log = function(d) { 
   log_file.write(util.format(d) + '\n');
   log_stdout.write(util.format(d) + '\n');
 };
 
-var requestNumber = 0;
+var requestNumber = 0; //keeps track of how many http requests the server has gotten since last restart
 
-app.get('/', function (req, res) {
+//webserver
+app.set('view engine', 'jade');
+app.use(express.static(__dirname + '/public'));
 
-  var index =  requestNumber % audioUrls.length;
+app.get('/', function (req, res) { 
+
+  var index =  requestNumber % audioUrls.length; //sets a looping index per request based on the # of soundfiles that came down from s3
   var audioUrl = audioUrls[index];
 
   console.log ("Request number "+ requestNumber + " is about to get " + audioUrl);
-  requestNumber++;
+  
+  requestNumber++; //increments server request index
 
   res.render('index', { audioUrl: audioUrl});
 });
 
-var server = app.listen(80, function () {
+var serverPort = 80
+var server = app.listen(serverPort, function () {
   var host = server.address().address;
   var port = server.address().port;
 
-  console.log('listening on port 80');
+  console.log('listening on port '+serverPort);
 });
  
