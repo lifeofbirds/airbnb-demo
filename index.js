@@ -64,10 +64,10 @@ app.get('/', function (req, res) {
   res.render('index', { audioUrl: audioUrl});
 });
 
-var server = app.listen(3000, function () {
+var server = app.listen(80, function () {
   var host = server.address().address;
   var port = server.address().port;
 
-  console.log('listening on port 3000');
+  console.log('listening on port 80');
 });
  
